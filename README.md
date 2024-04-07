@@ -4,7 +4,7 @@
 1. [Basic_IPython](https://jinhyeokko.github.io/Python_Data_Science/IPython/Basic_IPython/)
 2. [Input_And_Output_History](https://jinhyeokko.github.io/Python_Data_Science/IPython/Input_And_Output_History/)
 3. [Shell_Commands](https://jinhyeokko.github.io/Python_Data_Science/IPython/Shell_Commands/)
-4. [Debugging](https://jinhyeokko.github.io/Python_Data_Science/IPython/debugging/)
+4. [Debugging](https://jinhyeokko.github.io/Python_Data_Science/IPython/Debugging/)
 5. [Code_Profiling_And_Time_Measurement](https://jinhyeokko.github.io/Python_Data_Science/IPython/Code_Profiling_And_Time_Measurement/)
 
 ## NumPy
