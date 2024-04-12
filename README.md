@@ -1,4 +1,5 @@
 # Python_Data_Science
+[Python Data Science Handbook](https://wikibook.co.kr/python-ds-handbook/)
 
 ## IPython
 1. [Basic_IPython](https://jinhyeokko.github.io/Python_Data_Science/IPython/Basic_IPython/)
@@ -13,3 +14,7 @@
 3. [Universal_Functions](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Universal_Functions/)
 4. [Aggregate_Function](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Aggregate_Function/)
 5. [Broadcasting](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Broadcasting/)
+6. [Boolean-Arrays-And-Masks](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Boolean-Arrays-And-Masks/)
+7. [Fancy_Indexing](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Fancy_Indexing/)
+8. [Sorting_Arrays](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Sorting_Arrays/)
+9. [Structured-Data-NumPy](https://jinhyeokko.github.io/Python_Data_Science/NumPy/Structured-Data-NumPy/)
