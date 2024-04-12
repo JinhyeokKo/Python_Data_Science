@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Code_Profiling_And_Time_Measurement</title>
+    <title>Boolean-Arrays-And-Masks</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
     <style type="text/css">
         pre {
@@ -7688,7 +7688,7 @@ all of MD as it is not optimized for dense, information rich UIs.
     <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f7adeda3-680e-4f18-be3b-8fd6cc520bfa">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de730672-94a6-42cb-8d05-dbc81ff50933">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
@@ -7696,28 +7696,13 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h1 id="Code_Profiling_And_Time_Measurement">Code_Profiling_And_Time_Measurement<a
-                            class="anchor-link" href="#Code_Profiling_And_Time_Measurement">¶</a></h1>
+                    <h1 id="Comparisons,-Masks,-and-Boolean-Logic">Comparisons, Masks, and Boolean Logic<a
+                            class="anchor-link" href="#Comparisons,-Masks,-and-Boolean-Logic">¶</a></h1>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=463dc06e-60be-4790-9b85-bbb622ae88a4">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">
-                </div>
-                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h2 id="%EC%8B%A4%ED%96%89-%EC%8B%9C%EA%B0%84-%EC%B8%A1%EC%A0%95">실행 시간 측정<a class="anchor-link"
-                                                                                                 href="#%EC%8B%A4%ED%96%89-%EC%8B%9C%EA%B0%84-%EC%B8%A1%EC%A0%95">¶</a>
-                    </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8f737070-9d83-4f7c-bb0f-0eb829faaee9">
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=de8f2530-6d02-4921-b08d-ae288be7087e">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
@@ -7725,9 +7710,19 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
                 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
                     <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span
-                                class="c1"># 한 줄 코드 또는 함수 호출 실행 시간 측정</span>
-<span class="o">%</span><span class="k">timeit</span> sum(range(100))
+                        <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span
+                                class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">rainfall</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span
+                                    class="n">read_csv</span><span class="p">(</span><span class="s1">'./Seattle2014.csv'</span><span
+                                    class="p">)[</span><span class="s1">'PRCP'</span><span class="p">]</span><span
+                                    class="o">.</span><span class="n">values</span>
+<span class="n">inches</span> <span class="o">=</span> <span class="n">rainfall</span> <span class="o">/</span> <span
+                                    class="mi">254</span> <span class="c1"># 1/10mm --&gt; inches </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"inches.shape: "</span><span
+                                    class="p">,</span> <span class="n">inches</span><span class="o">.</span><span
+                                    class="n">shape</span><span class="p">)</span>
 </pre>
                         </div>
                     </div>
@@ -7741,14 +7736,29 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-OutputArea-child">
                     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
                     <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>403 ns ± 11.6 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+<pre>inches.shape:  (365,)
 </pre>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5d012a8a-f7e2-4a7e-a500-5d26a10a3e01">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56ff4521-7aee-4e0f-bb5c-18bb156e1cf6">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h2 id="Ufunc-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90">Ufunc 비교 연산자<a class="anchor-link"
+                                                                                                 href="#Ufunc-%EB%B9%84%EA%B5%90-%EC%97%B0%EC%82%B0%EC%9E%90">¶</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2681498d-a386-4043-9119-e007171c84cc">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
@@ -7756,16 +7766,54 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
                 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
                     <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># shell 단위 시간 측정</span>
-<span class="o">%%time</span>it
-<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span
-                                    class="p">(</span><span class="o">-</span><span class="mi">1</span><span
-                                    class="p">)</span> <span class="o">**</span> <span class="n">j</span>
+                        <div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span
+                                class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span
+                                class="p">([</span><span class="mi">1</span><span class="p">,</span> <span
+                                class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span
+                                class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span
+                                class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x: "</span><span class="p">,</span> <span
+                                    class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x &lt; 3: "</span><span class="p">,</span> <span
+                                    class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span
+                                    class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x &gt; 3: "</span><span class="p">,</span> <span
+                                    class="n">x</span> <span class="o">&gt;</span> <span class="mi">3</span><span
+                                    class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x &lt;= 3: "</span><span class="p">,</span> <span
+                                    class="n">x</span> <span class="o">&lt;=</span> <span class="mi">3</span><span
+                                    class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x &gt;= 3: "</span><span class="p">,</span> <span
+                                    class="n">x</span> <span class="o">&gt;=</span> <span class="mi">3</span><span
+                                    class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x != 3: "</span><span class="p">,</span> <span
+                                    class="n">x</span> <span class="o">!=</span> <span class="mi">3</span><span
+                                    class="p">)</span>
+
+<span class="c1"># 복합 표현식 --&gt; 두 배열 항목별 비교</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">(2 * x) == (x ** 2): "</span><span class="p">,</span> <span
+                                    class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span
+                                    class="n">x</span><span class="p">)</span> <span class="o">==</span> <span
+                                    class="p">(</span><span class="n">x</span> <span class="o">**</span> <span
+                                    class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># 2차원</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span
+                                    class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span
+                                    class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span
+                                    class="p">(</span><span class="mi">10</span><span class="p">,</span> <span
+                                    class="n">size</span> <span class="o">=</span> <span class="p">(</span><span
+                                    class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span
+                                    class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">x: </span><span class="se">\n</span><span class="s2">"</span><span
+                                    class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">x &lt; 6: </span><span class="se">\n</span><span class="s2">"</span><span
+                                    class="p">,</span> <span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">6</span><span class="p">)</span>
 </pre>
                         </div>
                     </div>
@@ -7779,162 +7827,31 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-OutputArea-child">
                     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
                     <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>95.9 ms ± 2.89 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>x:  [1 2 3 4 5]
+x &lt; 3:  [ True  True False False False]
+x &gt; 3:  [False False False  True  True]
+x &lt;= 3:  [ True  True  True False False]
+x &gt;= 3:  [False False  True  True  True]
+x != 3:  [ True  True False  True  True]
+
+(2 * x) == (x ** 2):  [False  True False False False]
+
+x:
+ [[5 0 3 3]
+ [7 9 3 5]
+ [2 4 7 6]]
+
+x &lt; 6:
+ [[ True  True  True  True]
+ [False False  True  True]
+ [ True  True False False]]
 </pre>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6526cddc-9877-41a5-b8b1-e3f5f25854ab">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 정렬작업을 반복시에는 정확하지 않음 --&gt; %time 사용</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span
-                                    class="o">.</span><span class="n">random</span><span class="p">()</span> <span
-                                    class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span
-                                    class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span
-                                    class="p">)]</span>
-<span class="o">%</span><span class="k">timeit</span> L.sort()
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>276 µs ± 19.7 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93720613-306c-4710-bb97-f416beec3db8">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 시간 비교</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span
-                                    class="o">.</span><span class="n">random</span><span class="p">()</span> <span
-                                    class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span
-                                    class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span
-                                    class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"미정렬 리스트 정렬"</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> L.sort()
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>미정렬 리스트 정렬
-CPU times: total: 0 ns
-Wall time: 9.52 ms
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ade0b31d-cbe4-4433-82b1-a2eefd53f65f">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 정렬된 리스트여도 %timeit은 가비지 컬렉션 작업을 막아 %time보다 빠름</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"정렬 리스트 정렬"</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> L.sort()
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>정렬 리스트 정렬
-CPU times: total: 0 ns
-Wall time: 2.26 ms
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f798cf90-89cd-4c64-979e-0914904ff672">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span
-                                class="c1"># %%를 통해 여러 줄 스크립트 측정 가능</span>
-<span class="o">%%time</span>
-<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span
-                                    class="p">(</span><span class="o">-</span><span class="mi">1</span><span
-                                    class="p">)</span> <span class="o">**</span> <span class="n">j</span>
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CPU times: total: 93.8 ms
-Wall time: 156 ms
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=758aa669-aa09-4c63-8872-dc1b2529c305">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=535c243b-229e-4129-878b-52ceb937b77f">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
@@ -7942,53 +7859,120 @@ Wall time: 156 ms
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h2 id="%ED%94%84%EB%A1%9C%ED%8C%8C%EC%9D%BC%EB%A7%81">프로파일링<a class="anchor-link"
-                                                                                   href="#%ED%94%84%EB%A1%9C%ED%8C%8C%EC%9D%BC%EB%A7%81">¶</a>
-                    </h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Equivalent ufunc</th>
+                            <th>Operator</th>
+                            <th>Equivalent ufunc</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><code>==</code></td>
+                            <td><code>np.equal</code></td>
+                            <td><code>!=</code></td>
+                            <td><code>np.not_equal</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;</code></td>
+                            <td><code>np.less</code></td>
+                            <td><code>&lt;=</code></td>
+                            <td><code>np.less_equal</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&gt;</code></td>
+                            <td><code>np.greater</code></td>
+                            <td><code>&gt;=</code></td>
+                            <td><code>np.greater_equal</code></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs"
-         id="cell-id=345091c1-086f-4393-b797-f89a7df0e75c">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3edf4526-042b-4da5-8bbd-ef980e927a12">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
             <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span
-                                class="nf">sum_of_lists</span><span class="p">(</span><span class="n">N</span><span
-                                class="p">):</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="mi">5</span><span class="p">):</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span
-                                    class="o">^</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;&gt;</span> <span
-                                    class="n">i</span><span class="p">)</span> <span class="k">for</span> <span
-                                    class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="n">N</span><span class="p">)]</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span
-                                    class="n">L</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">total</span>
-</pre>
-                        </div>
-                    </div>
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h2 id="%EB%B6%80%EC%9A%B8-%EB%B0%B0%EC%97%B4%EB%A1%9C-%EC%9E%91%EC%97%85">부울 배열로 작업<a
+                            class="anchor-link"
+                            href="#%EB%B6%80%EC%9A%B8-%EB%B0%B0%EC%97%B4%EB%A1%9C-%EC%9E%91%EC%97%85">¶</a></h2>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dcf6136c-eb81-4dbd-abdf-4ba8b40a3e93">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=051c87e9-b066-46a2-96f6-dd567799fa64">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
             <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h3 id="%EC%9A%94%EC%86%8C-%EA%B0%9C%EC%88%98-%EC%84%B8%EA%B8%B0">요소 개수 세기<a class="anchor-link"
+                                                                                                 href="#%EC%9A%94%EC%86%8C-%EA%B0%9C%EC%88%98-%EC%84%B8%EA%B8%B0">¶</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f701e887-fb5d-4124-b3c9-8e064763b35f">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
                 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
                     <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 전체 스크립트 프로파일링</span>
-<span class="o">%</span><span class="k">prun</span> sum_of_lists(1000000)
+                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 요소 개수 세기</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x: </span><span class="se">\n</span><span
+                                    class="s2">"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1"># True인 요소의 개수</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">np.count_nonzero(x &lt; 6): "</span><span class="p">,</span> <span
+                                    class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">6</span><span class="p">))</span>
+<span class="c1">#False는 0으로, True는 1로 해석</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">np.sum(x &lt; 6): "</span><span class="p">,</span> <span
+                                    class="n">np</span><span class="o">.</span><span class="n">sum</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">6</span><span class="p">))</span>
+<span class="c1"># 집계함수와 같이 행이나 열에 따른 계산 가능</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"np.sum(x &lt; 6, axis=1): "</span><span
+                                    class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">6</span><span class="p">,</span> <span class="n">axis</span><span
+                                    class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 값 중 참이 있는지 확인</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">np.any(x &gt; 8): "</span><span class="p">,</span> <span
+                                    class="n">np</span><span class="o">.</span><span class="n">any</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span
+                                    class="mi">8</span><span class="p">))</span> <span class="c1"># 하나의 값 기준</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"np.all(x &lt; 10): "</span><span
+                                    class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">10</span><span class="p">))</span> <span class="c1"># 모든 값 기준</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">np.any(x &gt; 8, axis=1): "</span><span class="p">,</span> <span
+                                    class="n">np</span><span class="o">.</span><span class="n">any</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span
+                                    class="mi">8</span><span class="p">,</span> <span class="n">axis</span><span
+                                    class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"np.all(x &lt; 8, axis=0): "</span><span
+                                    class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span
+                                    class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">8</span><span class="p">,</span> <span class="n">axis</span><span
+                                    class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre>
                         </div>
                     </div>
@@ -8002,135 +7986,100 @@ Wall time: 156 ms
                 <div class="jp-OutputArea-child">
                     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
                     <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-                        <pre> </pre>
-                    </div>
-                </div>
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>         14 function calls in 0.582 seconds
+<pre>x:
+ [[5 0 3 3]
+ [7 9 3 5]
+ [2 4 7 6]]
 
-   Ordered by: internal time
+np.count_nonzero(x &lt; 6):  8
 
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        5    0.489    0.098    0.489    0.098 3519952779.py:4(&lt;listcomp&gt;)
-        5    0.069    0.014    0.069    0.014 {built-in method builtins.sum}
-        1    0.018    0.018    0.576    0.576 3519952779.py:1(sum_of_lists)
-        1    0.006    0.006    0.582    0.582 &lt;string&gt;:1(&lt;module&gt;)
-        1    0.000    0.000    0.582    0.582 {built-in method builtins.exec}
-        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16c642b2-f974-4044-a201-ae47146ecb21">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span
-                                class="n">line_profiler</span>
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Collecting line_profiler
-  Downloading line_profiler-4.1.2-cp311-cp311-win_amd64.whl.metadata (32 kB)
-Downloading line_profiler-4.1.2-cp311-cp311-win_amd64.whl (123 kB)
-   ---------------------------------------- 0.0/123.6 kB ? eta -:--:--
-   ----------------------- ---------------- 71.7/123.6 kB 2.0 MB/s eta 0:00:01
-   ---------------------------------------- 123.6/123.6 kB 2.4 MB/s eta 0:00:00
-Installing collected packages: line_profiler
-Successfully installed line_profiler-4.1.2
-Note: you may need to restart the kernel to use updated packages.
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs"
-         id="cell-id=8bd9ae6f-3734-4bb0-b1b2-bd33e1d84f25">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> line_profiler
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fe6345e4-3c8a-472b-90d1-83f311a2b51d">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 라인 단위 프로파일링</span>
-<span class="o">%</span><span class="k">lprun</span> -f sum_of_lists sum_of_lists(5000)
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Timer unit: 1e-07 s
+np.sum(x &lt; 6):  8
+np.sum(x &lt; 6, axis=1):  [4 2 2]
 
-Total time: 0.008661 s
-File: C:\Users\jiinn\AppData\Local\Temp\ipykernel_10312\3519952779.py
-Function: sum_of_lists at line 1
+np.any(x &gt; 8):  True
+np.all(x &lt; 10):  True
 
-Line #      Hits         Time  Per Hit   % Time  Line Contents
-==============================================================
-     1                                           def sum_of_lists(N):
-     2         1          7.0      7.0      0.0      total = 0
-     3         6         45.0      7.5      0.1      for i in range(5):
-     4         5      85463.0  17092.6     98.7          L = [j ^ (j &gt;&gt; i) for j in range(N)]
-     5         5       1092.0    218.4      1.3          total += sum(L)
-     6         1          3.0      3.0      0.0      return total</pre>
+np.any(x &gt; 8, axis=1):  [False  True False]
+np.all(x &lt; 8, axis=0):  [ True False  True  True]
+</pre>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=975a7404-3876-49ba-bd60-fce98158daf2">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0f4b8ae-5c21-4aed-9893-f2957a4db8c0">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
             <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h3 id="%EB%B6%80%EC%9A%B8-%EC%97%B0%EC%82%B0%EC%9E%90">부울 연산자<a class="anchor-link"
+                                                                                     href="#%EB%B6%80%EC%9A%B8-%EC%97%B0%EC%82%B0%EC%9E%90">¶</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cd635b42-0b7a-4cf8-af41-e176b5ae4e35">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Equivalent ufunc</th>
+                            <th>Operator</th>
+                            <th>Equivalent ufunc</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><code>&amp;</code></td>
+                            <td><code>np.bitwise_and</code></td>
+                            <td>|</td>
+                            <td><code>np.bitwise_or</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>^</code></td>
+                            <td><code>np.bitwise_xor</code></td>
+                            <td><code>~</code></td>
+                            <td><code>np.bitwise_not</code></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=334da2a8-ef45-4b38-9599-98d113f06207">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
                 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
                     <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span
-                                class="n">memory_profiler</span>
+                        <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span
+                                class="p">(</span><span
+                                class="s2">"np.sum((inches &gt; 0.5) &amp; (inches &lt; 1)): "</span><span
+                                class="p">,</span> <span class="n">np</span><span class="o">.</span><span
+                                class="n">sum</span><span class="p">((</span><span class="n">inches</span> <span
+                                class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span
+                                class="o">&amp;</span> <span class="p">(</span><span class="n">inches</span> <span
+                                class="o">&lt;</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"np.sum(~((inches &lt;= 0.5) | (inches &gt;= 1))): "</span><span
+                                    class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span
+                                    class="p">(</span><span class="o">~</span><span class="p">((</span><span class="n">inches</span> <span
+                                    class="o">&lt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span
+                                    class="o">|</span> <span class="p">(</span><span class="n">inches</span> <span
+                                    class="o">&gt;=</span> <span class="mi">1</span><span class="p">))))</span>
 </pre>
                         </div>
                     </div>
@@ -8144,151 +8093,183 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
                 <div class="jp-OutputArea-child">
                     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
                     <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Collecting memory_profiler
-  Downloading memory_profiler-0.61.0-py3-none-any.whl.metadata (20 kB)
-Requirement already satisfied: psutil in d:\anaconda3\lib\site-packages (from memory_profiler) (5.9.0)
-Downloading memory_profiler-0.61.0-py3-none-any.whl (31 kB)
-Installing collected packages: memory_profiler
-Successfully installed memory_profiler-0.61.0
-Note: you may need to restart the kernel to use updated packages.
+<pre>np.sum((inches &gt; 0.5) &amp; (inches &lt; 1)):  29
+np.sum(~((inches &lt;= 0.5) | (inches &gt;= 1))):  29
 </pre>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs"
-         id="cell-id=2e173cba-2a67-488a-8e77-67bb637a0b24">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3f9052fc-6bad-4472-8123-a28adb3fe843">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
             <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> memory_profiler
-</pre>
-                        </div>
-                    </div>
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h3 id="%EB%A7%88%EC%8A%A4%ED%81%AC%EB%A1%9C%EC%84%9C%EC%9D%98-%EB%B6%80%EC%9A%B8-%EB%B0%B0%EC%97%B4">
+                        마스크로서의 부울 배열<a class="anchor-link"
+                                       href="#%EB%A7%88%EC%8A%A4%ED%81%AC%EB%A1%9C%EC%84%9C%EC%9D%98-%EB%B6%80%EC%9A%B8-%EB%B0%B0%EC%97%B4">¶</a>
+                    </h3>
                 </div>
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bc5a8730-c530-4a91-b702-8851e93bbb0a">
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43e9e70a-becd-423c-a588-01e430098c95">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
             <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+                <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
                 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
                     <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 메모리 사용 프로파일링</span>
-<span class="c1"># timeit과 동일한 방식으로 메모리 츨정</span>
-<span class="o">%</span><span class="k">memit</span> sum_of_lists(1000000)
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>peak memory: 180.36 MiB, increment: 77.47 MiB
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6c6d2de8-8496-4708-b0ea-c65112ccf46d">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 모듈 생성</span>
-<span class="o">%%file</span> mprun_demo.py
-<span class="k">def</span> <span class="nf">sum_of_lists</span><span class="p">(</span><span class="n">N</span><span
-                                    class="p">):</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="mi">5</span><span class="p">):</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span
-                                    class="o">^</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;&gt;</span> <span
-                                    class="n">i</span><span class="p">)</span> <span class="k">for</span> <span
-                                    class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span
-                                    class="p">(</span><span class="n">N</span><span class="p">)]</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span
-                                    class="n">L</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">total</span>
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Writing mprun_demo.py
-</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75444122-0900-4f53-8d9d-53f7ba261b60">
-        <div class="jp-Cell-inputWrapper" tabindex="0">
-            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-            </div>
-            <div class="jp-InputArea jp-Cell-inputArea">
-                <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
-                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-                    <div class="cm-editor cm-s-jupyter">
-                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># %lprun과 동일한 방식으로 메모리 측정 --&gt; 별도의 모듈에만 동작</span>
-<span class="kn">from</span> <span class="nn">mprun_demo</span> <span class="kn">import</span> <span class="n">sum_of_lists</span>
-<span class="o">%</span><span class="k">mprun</span> -f sum_of_lists sum_of_lists(1000000)
-</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="jp-Cell-outputWrapper">
-            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-            </div>
-            <div class="jp-OutputArea jp-Cell-outputArea">
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-</pre>
-                    </div>
-                </div>
-                <div class="jp-OutputArea-child">
-                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Filename: D:\A\AI_Programming\mprun_demo.py
+                        <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span
+                                class="p">(</span><span class="s2">"x: </span><span class="se">\n</span><span
+                                class="s2">"</span><span class="p">,</span> <span class="n">x</span><span
+                                class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">x[x &lt; 5]: "</span><span class="p">,</span> <span
+                                    class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span
+                                    class="mi">5</span><span class="p">])</span> <span class="c1"># 마스킹 연산 --&gt; 부울(마스크) 배열에서 True값 반환</span>
 
-Line #    Mem usage    Increment  Occurrences   Line Contents
-=============================================================
-     1    105.7 MiB    105.7 MiB           1   def sum_of_lists(N):
-     2    105.7 MiB      0.0 MiB           1       total = 0
-     3    146.1 MiB     -0.0 MiB           6       for i in range(5):
-     4    181.8 MiB -39042623.4 MiB     5000015           L = [j ^ (j &gt;&gt; i) for j in range(N)]
-     5    146.1 MiB   -115.7 MiB           5           total += sum(L)
-     6    146.1 MiB     -0.0 MiB           1       return total</pre>
+<span class="c1"># Example</span>
+<span class="n">rainy</span> <span class="o">=</span> <span class="p">(</span><span class="n">inches</span> <span
+                                    class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">summer</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span
+                                    class="n">arange</span><span class="p">(</span><span class="mi">365</span><span
+                                    class="p">)</span> <span class="o">-</span> <span class="mi">172</span> <span
+                                    class="o">&lt;</span> <span class="mi">90</span><span class="p">)</span> <span
+                                    class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span
+                                    class="o">.</span><span class="n">arange</span><span class="p">(</span><span
+                                    class="mi">365</span><span class="p">)</span> <span class="o">-</span><span
+                                    class="mi">17</span> <span class="o">&gt;</span> <span class="mi">0</span><span
+                                    class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">np.median(inches[rainy]): "</span><span class="p">,</span> <span
+                                    class="n">np</span><span class="o">.</span><span class="n">median</span><span
+                                    class="p">(</span><span class="n">inches</span><span class="p">[</span><span
+                                    class="n">rainy</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"np.median(inches[summer]): "</span><span
+                                    class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span
+                                    class="p">(</span><span class="n">inches</span><span class="p">[</span><span
+                                    class="n">summer</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"np.max(inches[summer]): "</span><span
+                                    class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span
+                                    class="p">(</span><span class="n">inches</span><span class="p">[</span><span
+                                    class="n">summer</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span
+                                    class="s2">"np.median(inches[rainy &amp; ~summer]): "</span><span class="p">,</span> <span
+                                    class="n">np</span><span class="o">.</span><span class="n">median</span><span
+                                    class="p">(</span><span class="n">inches</span><span class="p">[</span><span
+                                    class="n">rainy</span> <span class="o">&amp;</span> <span class="o">~</span><span
+                                    class="n">summer</span><span class="p">]))</span>
+</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>x:
+ [[5 0 3 3]
+ [7 9 3 5]
+ [2 4 7 6]]
+
+x[x &lt; 5]:  [0 3 3 3 2 4]
+
+np.median(inches[rainy]):  0.19488188976377951
+np.median(inches[summer]):  0.0
+np.max(inches[summer]):  1.8385826771653544
+np.median(inches[rainy &amp; ~summer]):  0.20866141732283464
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39623e46-0c00-4807-933b-30b8f647ef76">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h3 id="%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%82%AC%EC%9A%A9">키워드 사용<a class="anchor-link"
+                                                                                     href="#%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%82%AC%EC%9A%A9">¶</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e974392-6203-4903-917f-d1215dd916b6">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="cm-editor cm-s-jupyter">
+                        <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># and / or --&gt; 객체를 부울 요소로 취급</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="mi">33</span><span
+                                    class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span
+                                    class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x:"</span><span class="p">,</span> <span
+                                    class="n">x</span><span class="p">,</span> <span class="s2">"</span><span
+                                    class="se">\n</span><span class="s2">y:"</span><span class="p">,</span> <span
+                                    class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"x and y:"</span><span class="p">,</span> <span
+                                    class="n">x</span> <span class="ow">and</span> <span class="n">y</span><span
+                                    class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">x or y:"</span><span class="p">,</span> <span class="n">x</span> <span
+                                    class="ow">or</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># &amp; / | --&gt; 비트를 비교(배열에 사용)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span
+                                    class="s2">bin(33):"</span><span class="p">,</span> <span class="nb">bin</span><span
+                                    class="p">(</span><span class="mi">33</span><span class="p">),</span> <span
+                                    class="s2">"</span><span class="se">\n</span><span class="s2">bin(55):"</span><span
+                                    class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span
+                                    class="mi">55</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin(33 &amp; 55):"</span><span class="p">,</span> <span
+                                    class="nb">bin</span><span class="p">(</span><span class="mi">33</span> <span
+                                    class="o">&amp;</span> <span class="mi">55</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin(33 | 55):"</span><span
+                                    class="p">,</span> <span class="nb">bin</span><span class="p">(</span><span
+                                    class="mi">33</span> <span class="o">|</span> <span class="mi">55</span><span
+                                    class="p">))</span>
+</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jp-Cell-outputWrapper">
+            <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+            </div>
+            <div class="jp-OutputArea jp-Cell-outputArea">
+                <div class="jp-OutputArea-child">
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>x: True
+y: False
+x and y: False
+x or y: True
+
+bin(33): 0b100001
+bin(55): 0b110111
+bin(33 &amp; 55): 0b100001
+bin(33 | 55): 0b110111
+</pre>
                     </div>
                 </div>
             </div>
