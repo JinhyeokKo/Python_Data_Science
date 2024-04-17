@@ -26,11 +26,17 @@
 4. [Missing_Values](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Missing_Values/)
 5. [Hierarchical_Indexing](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Hierarchical_Indexing/)
 6. [Concat_And_Append](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Concat_And_Append/)
+7. [Merge_And_Join](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Merge_And_Join/)
+8. [Aggregation_And_Grouping](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Aggregation_And_Grouping/)
+9. [Pivot_Tables](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Pivot_Tables/)
+10. [Working_With_Strings](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Working_With_Strings/)
+11. [Working_With_Time_Series](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Working_With_Time_Series/)
+12. [Performance_Eval_And_Query](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Performance_Eval_And_Query/)
 
 
 # version
-python = 3.12.1  
+python = 3.11.7  
 ipython = 8.20.0  
 numpy = 1.26.4  
-pandas = 2.2.1  
+pandas = 2.2.2  
 해당 버전 이하의 지원이 종료되거나 종료될 예정인 함수와 이 후 버전에서 지원이 종료될 예정인 함수 수정
