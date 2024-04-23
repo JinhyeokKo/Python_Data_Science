@@ -33,10 +33,25 @@
 11. [Working_With_Time_Series](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Working_With_Time_Series/)
 12. [Performance_Eval_And_Query](https://jinhyeokko.github.io/Python_Data_Science/Pandas/Performance_Eval_And_Query/)
 
+## Matplotlib
+1. [Simple_Line_Plots](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Simple_Line_Plots)
+2. [Simple_Scatter_Plots](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Simple_Scatter_Plots)
+3. [Density_And_Contour_Plots](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Density_And_Contour_Plots)
+4. [Customizing_Legends](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Customizing_Legends)
+5. [Customizing_Colorbars](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Customizing_Colorbars)
+6. [Multiple_Subplots](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Multiple_Subplots)
+7. [Text_And_Annotation](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Text_And_Annotation)
+8. [Customizing_Ticks](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Customizing_Ticks)
+9. [Settings_And_Stylesheets](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Settings_And_Stylesheets)
+10. [Three_Dimensional_Plotting](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Three_Dimensional_Plotting)
+11. [Visualization_With_Seaborn](https://jinhyeokko.github.io/Python_Data_Science/Matplotlib/Visualization_With_Seaborn)
+
 
 # version
 python = 3.11.7  
 ipython = 8.20.0  
 numpy = 1.26.4  
 pandas = 2.2.2  
+matplotlib = 3.8.3
+seaborn = 0.13.2
 해당 버전 이하의 지원이 종료되거나 종료될 예정인 함수와 이 후 버전에서 지원이 종료될 예정인 함수 수정
