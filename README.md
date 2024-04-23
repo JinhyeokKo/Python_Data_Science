@@ -52,6 +52,6 @@ python = 3.11.7
 ipython = 8.20.0  
 numpy = 1.26.4  
 pandas = 2.2.2  
-matplotlib = 3.8.3
-seaborn = 0.13.2
+matplotlib = 3.8.3  
+seaborn = 0.13.2  
 해당 버전 이하의 지원이 종료되거나 종료될 예정인 함수와 이 후 버전에서 지원이 종료될 예정인 함수 수정
